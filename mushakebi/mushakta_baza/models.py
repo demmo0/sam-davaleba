@@ -1,21 +1,27 @@
+from tkinter import CASCADE
+from typing_extensions import Self
 from django.db import models
 from datetime import datetime
 
 # Create your models here.
-class Mta_Dep(models.Model):
-    Saxeli = models.CharField(max_length=50)
-    
-    def __str__(self):
-        return self.Saxeli
-
-
 class Departamenti(models.Model):
     Saxeli=models.CharField(max_length=200)
     
-    Mta_Dep=models.ForeignKey(Mta_Dep,on_delete=models.CASCADE)
+    Mta_Dep=models.ForeignKey('self', on_delete=models.CASCADE, blank=True,null=True)
+
+
 
     def __str__(self):
-        return self.Mta_Dep.Saxeli + '/' +  self.Saxeli
+
+        if(self.Mta_Dep is not None):
+
+            return self.Mta_Dep.__str__() + '/' + self.Saxeli
+
+        else:
+
+            return self.Saxeli
+
+
 
 
 
@@ -31,8 +37,8 @@ class Tan_Mshromeli(models.Model):
     Surati = models.ImageField()
 
     Emaili = models.EmailField()
-    Departamenti = models.ForeignKey(Departamenti,on_delete=models.CASCADE)
+    Departamenti = models.ForeignKey(Departamenti,on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
-        return self.Departamenti.Mta_Dep.Saxeli + '/' + self.Departamenti.Saxeli + '/' + self.Saxeli
+        return self.Departamenti.__str__() + '/' + self.Saxeli
 
