@@ -4,6 +4,8 @@ from django.db import models
 from datetime import datetime
 
 # Create your models here.
+
+
 class Departamenti(models.Model):
     Saxeli=models.CharField(max_length=200)
     
@@ -41,4 +43,17 @@ class Tan_Mshromeli(models.Model):
 
     def __str__(self):
         return self.Departamenti.__str__() + '/' + self.Saxeli
+
+
+class Maxasiateblebi(models.Model):
+
+    Pasu_Mgeb = models.BooleanField()
+    Adre_Modis = models.BooleanField()
+    Saqmes_Aketebs = models.BooleanField()
+    Xatavs = models.BooleanField()
+    Mgeris = models.BooleanField()
+    
+    Piri = models.ManyToManyField(Tan_Mshromeli)
+
+
 
