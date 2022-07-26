@@ -24,6 +24,12 @@ class Departamenti(models.Model):
             return self.Saxeli
 
 
+class Maxasiateblebi(models.Model):
+
+    name=models.CharField(max_length=200,blank=True,null=True)
+
+    def __str__(self):
+        return self.name
 
 
 
@@ -41,19 +47,13 @@ class Tan_Mshromeli(models.Model):
     Emaili = models.EmailField()
     Departamenti = models.ForeignKey(Departamenti,on_delete=models.CASCADE,null=True,blank=True)
 
+    maxasiateblebi = models.ManyToManyField(Maxasiateblebi)
+
     def __str__(self):
         return self.Departamenti.__str__() + '/' + self.Saxeli
 
 
-class Maxasiateblebi(models.Model):
 
-    Pasu_Mgeb = models.BooleanField()
-    Adre_Modis = models.BooleanField()
-    Saqmes_Aketebs = models.BooleanField()
-    Xatavs = models.BooleanField()
-    Mgeris = models.BooleanField()
-    
-    Piri = models.ManyToManyField(Tan_Mshromeli)
 
 
 
