@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./mushakebi/mushakta_baza"
+    ]
+}
